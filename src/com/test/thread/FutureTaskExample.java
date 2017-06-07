@@ -6,6 +6,8 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.FutureTask;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.concurrent.Callable;
 
  
@@ -13,7 +15,7 @@ public class FutureTaskExample {
  
     public static void main(String[] args) {
         MyCallable callable1 = new MyCallable(1000);
-        MyCallable callable2 = new MyCallable(2000);
+        MyCallable callable2 = new MyCallable(5000);
  
         FutureTask<String> futureTask1 = new FutureTask<String>(callable1);
         FutureTask<String> futureTask2 = new FutureTask<String>(callable2);
@@ -37,7 +39,7 @@ public class FutureTaskExample {
 	                System.out.println("FutureTask1 output="+futureTask1.get());
                 }
                  
-                System.out.println("Waiting for FutureTask2 to complete");
+                System.out.println("Waiting for FutureTask2 to complete - "+ LocalTime.now().getSecond());
                 String s = futureTask2.get(20L, TimeUnit.MILLISECONDS);
                 if(s !=null){
                     System.out.println("FutureTask2 output="+s);
