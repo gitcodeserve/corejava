@@ -14,7 +14,7 @@ import java.util.concurrent.Callable;
 public class FutureTaskExample {
  
     public static void main(String[] args) {
-        MyCallable callable1 = new MyCallable(1000);
+        MyCallable callable1 = new MyCallable(6000);
         MyCallable callable2 = new MyCallable(5000);
  
         FutureTask<String> futureTask1 = new FutureTask<String>(callable1);
@@ -24,6 +24,16 @@ public class FutureTaskExample {
         
         executor.execute(futureTask1);
         executor.execute(futureTask2);
+        
+        System.out.println("Doing some other task ");
+        try {
+        	System.err.println("Inside main sleep ");
+			Thread.sleep(5000);
+			System.err.println("Inside main sleep end...");
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
          
         while (true) {
             try {

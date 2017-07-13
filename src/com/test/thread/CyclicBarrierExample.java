@@ -28,6 +28,9 @@ public class CyclicBarrierExample {
 		
 		try {
 			barrier.await();
+			
+			System.out.println("Main  - cyclicBarrier.getNumberWaiting() " + barrier.getNumberWaiting());
+			System.out.println("Main - cyclicBarrier.getParties() " + barrier.getParties());
 		} catch (InterruptedException e) {
 			System.out.println("Main Thread interrupted!");
 			e.printStackTrace();
@@ -53,7 +56,7 @@ class ServiceOne implements Runnable {
 	public void run() {
 		System.out.println("Starting service One...");
 		try {
-			Thread.sleep(3000);
+			Thread.sleep(5000);
 		} catch (InterruptedException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
@@ -61,6 +64,8 @@ class ServiceOne implements Runnable {
 		System.out.println("Service One has finished its work... waiting for others...");
 		try {
 			cyclicBarrier.await();
+			System.out.println("Service One - cyclicBarrier.getNumberWaiting() " + cyclicBarrier.getNumberWaiting());
+			System.out.println("Service One - cyclicBarrier.getParties() " + cyclicBarrier.getParties());
 		} catch (InterruptedException e) {
 			System.out.println("Service one interrupted!");
 			e.printStackTrace();
@@ -95,6 +100,8 @@ class ServiceTwo implements Runnable {
 		System.out.println("Service Two has finished its work.. waiting for others...");
 		try {
 			cyclicBarrier.await();
+			System.out.println("Service two  - cyclicBarrier.getNumberWaiting() " + cyclicBarrier.getNumberWaiting());
+			System.out.println("Service two  - cyclicBarrier.getParties() " + cyclicBarrier.getParties());
 		} catch (InterruptedException e) {
 			System.out.println("Service one interrupted!");
 			e.printStackTrace();

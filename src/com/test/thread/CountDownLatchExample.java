@@ -20,6 +20,7 @@ public class CountDownLatchExample {
 		// this way we can make sure that the execution of main thread only
 		// finishes ones 2 services have executed
 		try {
+			System.out.println("Main thread waiting for 8 second to decrease the latch to 0");
 			latch.await();
 			System.out.println("Starting main Thread!!!");
 		} catch (InterruptedException e) {
@@ -41,7 +42,7 @@ class Service1 implements Runnable {
 
 	@Override
 	public void run() {
-		System.out.println("Started service One");
+		System.out.println("Started service One --");
 		try {
 			Thread.sleep(3000);
 		} catch (InterruptedException e) {
@@ -50,6 +51,7 @@ class Service1 implements Runnable {
 		}
 		// reduce count of Count Down Latch by 1.
 		latch.countDown();
+		System.out.println(" Service 1 Count down latch by 1 ");
 
 	}
 
@@ -72,6 +74,7 @@ class Service2 implements Runnable {
 			e.printStackTrace();
 		}
 		latch.countDown();
+		System.out.println(" Service 2 Count down latch by 2 ");
 	}
 
 }
